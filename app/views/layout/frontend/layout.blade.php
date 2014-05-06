@@ -7,13 +7,10 @@
     <meta name="viewport" content="width=device-width">
 
     <link rel="shortcut icon" href="favicon.ico">
-
-        {{ HTML::style('css/style.css'); }}
-
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-1.8.3.min.js"><\/script>')</script>
-    
-    {{ HTML::script('js/html5.js'); }}
+    {{ HTML::style('css/style.css'); }}    
+   
     {{ HTML::script('js/main.js'); }}
     
     

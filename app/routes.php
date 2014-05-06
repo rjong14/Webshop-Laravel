@@ -11,13 +11,21 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', 'IndexController@getIndex');
 
 
-Route::get('users', function()
+Route::group(array('prefix' => 'admin'), function()
 {
-return View::make('main');
+	Route::get('/', 'DashboardController@getIndex');
+	Route::get('/products', 'ProductController@getIndex');
+	Route::get('/users', 'UserController@getIndex');
+	Route::get('/categories', 'CategorieController@getIndex');
+	Route::get('/orders', 'OrderController@getIndex');
+	Route::get('/menus', 'MenuController@getIndex');
+
+	Route::controller('/users', 'UserController');
+	Route::controller('/products', 'ProductController');
+	Route::controller('/categories', 'CategorieController');
+	Route::controller('/orders', 'OrderController');
+	Route::controller('/menus', 'MenuController');
 });

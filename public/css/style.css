@@ -527,10 +527,97 @@ form {
     margin: 0;
 }
 
-fieldset {
-    border: 1px solid #c0c0c0;
-    margin: 0 2px;
-    padding: 0.35em 0.625em 0.75em;
+body 
+{   
+    margin: 0;
+    padding: 0; 
+    font-family: Verdana, Tahoma, Arial, sans-serif;
+}
+
+fieldset.main 
+{  
+    margin: 1.5em 0 0 1.5em;  
+    padding: 1em 0 0 0;
+    width: 520px;
+    font-size: .9em;    
+}
+
+fieldset.main legend
+{  
+    margin-left: 1em;  
+    color: #000000;  
+    font-weight: bold;    
+}
+
+fieldset.main ol 
+{  
+    padding: 1em 1em 0 1em;  
+    list-style: none;
+}
+
+fieldset.main li 
+{  
+    padding-bottom: .5em;
+}
+
+fieldset.main ol li label 
+{  
+    float: left;
+    width: 10em;        
+    margin-right: 1em;
+}
+
+/* ----------------------------------------- */
+
+fieldset.nested 
+{  
+    margin: 0 0 1em 1em;  
+    padding: 0;
+    width: 93%;
+    font-size: 10px;
+    border: 1px solid gray;
+    background: #B0C4DE;    
+
+}
+
+fieldset.nested legend
+{  
+    margin-left: 1em;      
+    font-weight: normal;
+    font-size: 20px; 
+    color: black;
+    background-color: white;
+    padding: 0 1em 0 1em;
+    border: 1px solid black;
+}
+
+fieldset.nested ol 
+{  
+    padding: 0 1em 0 1em;  
+    list-style: none;
+}
+
+fieldset.nested li 
+{  
+    /* Control leading between rows. */
+    padding-bottom: .7em;
+}
+
+fieldset.nested ol li label 
+{  
+    float: left;
+    width: 10em;        
+    margin-right: 1em;
+}
+
+/* ----------------------------------------- */
+
+
+
+div.buttonsContainer
+{
+    float: left;
+    margin: 1em 1em 1em 0;
 }
 
 /* check */
