@@ -8,7 +8,6 @@
 {{ HTML::script('js/bootstrap-modalmanager.js'); }}
 {{ HTML::script('js/bootstrap-modal.js'); }}
 
-
 <script type="text/javascript">
 $(document).ready(function() {
 

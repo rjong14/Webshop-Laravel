@@ -1,4 +1,5 @@
 @extends('layout/frontend/layout')
+
 {{ HTML::style('css/style.css'); }}   
 
 @section('content')
@@ -52,10 +53,10 @@
                     </header>
 		    		<nav class="right_menu">
 					<ul>
-					    <li><a href="computer.php">PC</a></li>
-					    <li class="current"><a href=" {{ URL::to('playstation') }}">Playstation</a></li>
-					    <li><a href="xbox.php">XBOX</a></li>
-					</ul>
+					    <li><a href="{{ URL::to('producten/computer') }}">PC</a></li>
+					    <li class="current"><a href=" {{ URL::to('producten/playstation') }}">Playstation</a></li>
+					    <li><a href="{{ URL::to('producten/xbox') }}">XBOX</a></li>
+				</ul>
 				 	</nav><!-- .right_menu -->
                 </aside><!-- #categories_nav -->
             </div><!-- .sidebar -->

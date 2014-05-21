@@ -10,14 +10,13 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-1.8.3.min.js"><\/script>')</script>
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     {{ HTML::style('http://getbootstrap.com/2.3.2/assets/css/bootstrap.css'); }}
-        {{ HTML::script('http://getbootstrap.com/2.3.2/assets/js/bootstrap.js'); }}
+    {{ HTML::script('http://getbootstrap.com/2.3.2/assets/js/bootstrap.js'); }}
     {{ HTML::style('css/bootstrap-modal.css'); }}
     {{ HTML::style('css/style.css'); }}    
     {{ HTML::script('js/main.js'); }}
     {{ HTML::script('js/click.js'); }}
-
     {{ HTML::script('js/bootstrap-modalmanager.js'); }}
     {{ HTML::script('js/bootstrap-modal.js'); }}
     

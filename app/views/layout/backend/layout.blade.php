@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
-   
-
     <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
-
-
     <title>Webshop beheer</title>
 </head>
 

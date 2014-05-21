@@ -1,0 +1,213 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.9
+-- http://www.phpmyadmin.net
+--
+-- Machine: 127.0.0.1
+-- Genereertijd: 21 mei 2014 om 11:59
+-- Serverversie: 5.6.14
+-- PHP-versie: 5.5.6
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Databank: `webshop`
+--
+CREATE DATABASE IF NOT EXISTS `webshop` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `webshop`;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `categorie`
+--
+
+CREATE TABLE IF NOT EXISTS `categorie` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `naam` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Gegevens worden uitgevoerd voor tabel `categorie`
+--
+
+INSERT INTO `categorie` (`id`, `naam`) VALUES
+(1, 'xbox'),
+(2, 'computer'),
+(3, 'playstation');
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `gebruikers`
+--
+
+CREATE TABLE IF NOT EXISTS `gebruikers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gebruikersnaam` varchar(45) NOT NULL,
+  `wachtwoord` varchar(45) NOT NULL,
+  `voornaam` varchar(45) NOT NULL,
+  `achternaam` varchar(45) NOT NULL,
+  `adres` varchar(45) NOT NULL,
+  `woonplaats` varchar(45) NOT NULL,
+  `postcode` varchar(10) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `isAdmin` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+
+--
+-- Gegevens worden uitgevoerd voor tabel `gebruikers`
+--
+
+INSERT INTO `gebruikers` (`id`, `gebruikersnaam`, `wachtwoord`, `voornaam`, `achternaam`, `adres`, `woonplaats`, `postcode`, `email`, `isAdmin`) VALUES
+(22, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Louis', 'Hol', 'Groeneweg 25', 'Buurmalsen', '4197HD', 'Louis_hol@hotmail.com', 1),
+(24, 'gebruikersnaam1', 'wachtwoord', 'voornaam', 'achternaam', 'adres', 'woonplaats', 'postcode', 'email', 0),
+(25, 'Louis', 'wachtwoord', 'voornaam', 'achternaam', 'adres', 'woonplaats', 'postcode', 'email', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `menu`
+--
+
+CREATE TABLE IF NOT EXISTS `menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `label` varchar(45) NOT NULL,
+  `link` varchar(100) NOT NULL,
+  `parent` int(11) DEFAULT NULL,
+  `sort` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+--
+-- Gegevens worden uitgevoerd voor tabel `menu`
+--
+
+INSERT INTO `menu` (`id`, `label`, `link`, `parent`, `sort`) VALUES
+(1, 'Home', 'home', 0, 0),
+(3, 'Playstation', 'producten/playstation', 5, 0),
+(4, 'Computer', 'producten/computer', 5, 0),
+(5, 'producten', 'producten', 0, 0),
+(6, 'Xbox', 'producten/xbox', 5, 0),
+(7, 'about', 'about', 0, 0),
+(14, 'takenverdeling', 'takenverdeling', 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `orderregel`
+--
+
+CREATE TABLE IF NOT EXISTS `orderregel` (
+  `order_regel_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
+  `producten_id` int(11) NOT NULL,
+  `aantal` int(11) NOT NULL,
+  PRIMARY KEY (`order_regel_id`),
+  KEY `fk_orderregel_order1_idx` (`order_id`),
+  KEY `fk_orderregel_producten1_idx` (`producten_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
+
+--
+-- Gegevens worden uitgevoerd voor tabel `orderregel`
+--
+
+INSERT INTO `orderregel` (`order_regel_id`, `order_id`, `producten_id`, `aantal`) VALUES
+(89, 1, 3, 0),
+(90, 1, 3, 0),
+(91, 1, 3, 0),
+(92, 1, 3, 4),
+(93, 1, 3, 0),
+(94, 1, 3, 0),
+(95, 1, 3, 0),
+(96, 1, 3, 0),
+(97, 1, 3, 0),
+(98, 1, 3, 0),
+(99, 1, 3, 0),
+(100, 1, 3, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `orders`
+--
+
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gebrID` int(11) NOT NULL,
+  `beschrijving` varchar(200) NOT NULL,
+  `datum` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `gebrID_idx` (`gebrID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Gegevens worden uitgevoerd voor tabel `orders`
+--
+
+INSERT INTO `orders` (`id`, `gebrID`, `beschrijving`, `datum`) VALUES
+(1, 24, 'hahds', '2014-04-09 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `producten`
+--
+
+CREATE TABLE IF NOT EXISTS `producten` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `prCategorie` int(11) DEFAULT NULL,
+  `prNaam` varchar(45) NOT NULL,
+  `prPrijs` varchar(45) NOT NULL,
+  `prImage` varchar(500) NOT NULL,
+  `prBeschrijving` varchar(400) NOT NULL,
+  `prKbeschrijving` varchar(100) DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `prCategorie_idx` (`prCategorie`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
+
+--
+-- Gegevens worden uitgevoerd voor tabel `producten`
+--
+
+INSERT INTO `producten` (`id`, `prCategorie`, `prNaam`, `prPrijs`, `prImage`, `prBeschrijving`, `prKbeschrijving`, `deleted_at`) VALUES
+(1, 2, 'Maplestory 2', '24', 'http://th03.deviantart.net/fs71/PRE/f/2010/361/d/e/maplestory_leaf_by_5995260108-d35p31p.png', 'Maplestory is een 2D MMORPG, waar je moet kiezen uit verschillende rollen zoals een warrior, thief, magican of boogschutter', 'Maplestory is een 2D MMORPG', '2014-04-20 21:13:18'),
+(3, 2, 'Borderlands 3', '22,50', 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQnzJ6b37ZUsk_42JbBMSHIvayQFX8HJ3qjG1AwpSGOtfaKCXBXtQ', 'In Borderlands 2 speelt de speler met een van de vier hoofdpersonen (een commando, siren, gunzerker of assassin).[1] De hoofdpersonen uit het vorige deel zijn gevangengenomen en de speler moet deze proberen te bevrijden. Tijdens dit avontuur wordt de speler lastiggevallen door rebellen, robots, grote beesten en aliens.\r\nDe AI van het spel is aanzienlijk veranderd. Tegenstanders kunnen elkaar comma', 'In Borderlands 2 speelt de speler met een van de vier hoofdpersonen ', NULL),
+(4, 2, 'Call of Duty : Ghosts', '49,99', 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTswcdAs_dybcKlBCZ7bAvS9jg9fu2MpFclx-8781i5QapANnUJ6bCO9enW', 'Call of Duty:  Ghosts is een first-person shooter ontwikkeld door Infinity Ward en uitgegeven door Activision. Het spel kwam uit op 5 november 2013 voor Microsoft Windows, PlayStation 3, Wii U en Xbox 360. De versies voor de PlayStation 4 en Xbox One komen op de releasedatum van beide consoles, respectievelijk 29 november 2013 en een nog onbekende datum in 2014 in Europa uit. De officiële trailer ', 'Call of Duty: Ghosts is een first-person shooter ontwikkeld door Infinity Ward', NULL),
+(5, 3, 'Game dev Tycoon', '32,43', 'http://img2.wikia.nocookie.net/__cb20130502010432/gamedevtycoon/images/thumb/4/42/Gamedevtycoonlogo.png/670px-152,522,0,360-Gamedevtycoonlogo.png', 'spel beschikbaar voor Windows, Mac en Linux, evenals op de Windows 8 Store. In Game Dev Tycoon replay u de geschiedenis van de gaming-industrie door het starten van je eigen video game development bedrijf in de jaren ''80. Maak best verkopende games. Onderzoek naar nieuwe technologieën en bedenken nieuwe speltypes. De leider van de markt en krijgen wereldwi', 'Game Dev Tycoon is een business simulatie spel', NULL),
+(6, 3, 'Life with Louie', '24.99', 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSdiT2LKtmaGvKsIYLgkF_38Pp98ZxnZWtMOW8brRR7OMKIigpVsw', 'Leven met Louie is een Amerikaanse spel dat is gebaseerd op de stand-upcomedyverhalen van Louie Anderson over toen hij nog een kind was. In Nederland werd hij eerst ondertiteld, en later nagesynchroniseerd uitgezonden op Fox Kids.', 'Leven met Louie is een Amerikaanse spel dat is gebaseerd op de stand-upcomedyverhalen van louis', NULL),
+(7, 2, 'Minecraft', '34,31', 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSB8AQcXiWtAnvoIv4Y7cunv_6kOvTaebJglJiTpogfOpBk65HEVRpA1DlN', 'Minecraft is een computerspel, waarbij het de bedoeling is om objecten te bouwen met kubusvormige materialen en grondstoffen, die eerst gedolven en verzameld moeten worden in het landschap waarin de speler zich bevindt. Het spel kan zowel online, als op de eigen computer gespeeld worden, in het laatste geval door het te downloaden van de officiële website van Minecraft. De betaalde versie is inmid', 'Minecraft is een computerspel, waarbij het de bedoeling is om objecten te bouwen', NULL),
+(8, 3, 'Space Invaders', '24,50', 'http://nodebox.net/node/documentation/concepts/subnetworks-space-invaders.png', 'Space Invaders is een arcadespel, ontworpen in 1978 door Toshihiro Nishikado. Het werd oorspronkelijk gemaakt door Taito en de licentie voor de Verenigde Staten werd gegeven aan Midway. Het spel werd als eerste in thuisland Japan uitgebracht in 1978 en geldt als een van de invloedrijkste computerspellen ooit gemaakt. Hoewel het naar moderne standaarden zeer simplistisch is was het een van de eerst', 'Space Invaders is een arcadespel, ontworpen in 1978', NULL),
+(9, 1, 'The walking dead', '9,99', 'http://tacticalshit.com/wp-content/uploads/2013/10/The-Walking-Dead.jpg', 'The Walking Dead is een Amerikaanse spel dat over een groep mensen die trachten te overleven in een wereld vol zombies. De reeks werd ontwikkeld door scenarist en regisseur Frank Darabont. Het verhaal speelt zich af in Atlanta (Georgia) en werd gebaseerd op de door Robert Kirkman, Tony Moore en Charlie Adlard bedachte gelijknamige strip.', 'The Walking Dead is een Amerikaanse spel dat over een groep mensen die trachten te overleven.', NULL),
+(10, 2, 'The Witcher 3', '49,99', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDvmZ_rXnMHR2D4MMb5zx645QKjaxOXvO-qYcWKQKrTftDATK4bsbqZPS1', 'Het verhaal van The Witcher 3: Wild Hunt draait wederom om Geralt. Deze mannelijke heks met bovennatuurlijke krachten moet in het derde deel zijn geliefden en de wereld tegen zijn aartsvijand beschermen. Naast het verslaan van het kwaad speelt jagen ook een grote rol in game.\r\n\r\nDe spelwereld van The Witcher 3: Wild Hunt is twintig procent groter dan concurrent Skyrim. Het kost spelers meer dan de', 'Het verhaal van The Witcher 3: Wild Hunt draait wederom om Geralt.', NULL),
+(11, 3, 'Day of Defeat', '99,99', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsnEaAtPw5BxRzXxFX0K1UdqVqdWnv-CtiiZJke9ihAgXLJRo5c6uS3vY', 'Day of Defeat (DoD) speelt zich af in de Tweede Wereldoorlog. De speler speelt voor één van de twee beschikbare teams, de ''Allies (Amerikanen of Engelsen'' en de ''Axis (Duitsers)''. Het spel is een vorm van vlagveroveren. Het spel maakt gebruik van geluid en plaatjes die gebaseerd zijn op de film Saving Private Ryan. Een aantal maps is ontworpen met in het achterhoofd historische gebeurtenissen.', 'Day of Defeat (DoD) speelt zich af in de Tweede Wereldoorlog.', NULL),
+(12, 1, 'Farming Simulator', '45,29', 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRtyZfSNoMxLyp2TLFtDddt6rRSP6XzRhEmp-k6R8Xrj2GywbAm', 'Farming Simulator 2013 brengt alles wat je van de reeks gewend bent in nog meer detail tot leven. Spelers kunnen in de carrière modus als boer aan de slag en ervaring op doen met verschillende voertuigen. Hierbij is het landschap vrij toegankelijk.\r\n\r\nDankzij een variabele economie kunnen de prijzen van de gewassen steeds weer verschillen. Hierdoor is het belangrijker strategisch te werk te gaan m', 'Farming Simulator 2013 brengt alles wat je van de reeks gewend bent ', NULL),
+(26, 1, 'Warrock', '10', 'http://i47.photobucket.com/albums/f171/blackflag99/warrock.png', 'Warrock is een FPS', 'Warrock is een FPS', NULL),
+(27, 1, 'Battlefield 3', '32', 'http://img64.imageshack.us/img64/4947/unled1ln.jpg', 'Battlefield 3 (ook wel afgekort tot BF3) is een first-person shooter en de opvolger van Battlefield 2, Battlefield 1942 en Battlefield 2142. Battlefield 3 is ontwikkeld door Digital Illusions CE en is uitgegeven door Electronic Arts.', 'Battlefield is een FPS ', NULL),
+(38, 1, 'Habbo hotel', '10', 'http://img3.wikia.nocookie.net/__cb20110704211955/habbo/en/images/8/80/Hotel_View.png', 'Habbo hotel', 'Lalal', NULL);
+
+--
+-- Beperkingen voor gedumpte tabellen
+--
+
+--
+-- Beperkingen voor tabel `orderregel`
+--
+ALTER TABLE `orderregel`
+  ADD CONSTRAINT `fk_orderregel_order1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_orderregel_producten1` FOREIGN KEY (`producten_id`) REFERENCES `producten` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `gebrID` FOREIGN KEY (`gebrID`) REFERENCES `gebruikers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `producten`
+--
+ALTER TABLE `producten`
+  ADD CONSTRAINT `prCategorie` FOREIGN KEY (`prCategorie`) REFERENCES `categorie` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
