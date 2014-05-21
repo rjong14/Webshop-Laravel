@@ -70,7 +70,7 @@ $(document).ready(function() {
             </ol>
         </fieldset>       
         <div class="buttonsContainer">
-            <input class="button" style="float:left;" type="submit" value="Product opslaan" /> 
+            <input class="button" style="float:left;" type="submit" value="Registreren" /> 
         </div>
     </fieldset>
     {{ Form::close() }}

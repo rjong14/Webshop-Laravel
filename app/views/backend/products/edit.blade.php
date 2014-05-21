@@ -7,12 +7,7 @@ $(document).ready(function() {
 
 		$.post(frm.attr('action'), frm.serialize(), function(response) {
 
-			if(response.code ==1)
-			{
-                window.location.reload();
-			} else {
-                alert("Vul alle velden in");
-			}
+		  console.log(response);
 		});
 	});
 });

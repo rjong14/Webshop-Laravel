@@ -21,6 +21,14 @@ class Menu extends Eloquent {
 		);
 		return Validator::make($input, $rules);
 	}
+	public function hasManysubCategories()
+	{
+		return $this->hasMany('Menu', 'parent');
+	}
+	public function belongsToCategories()
+	{
+		return $this->belongsTo('Menu', 'parent');
+	}
 }
 
 ?>

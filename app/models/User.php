@@ -1,5 +1,10 @@
 <?php
-class User extends Eloquent {
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableInterface;
+
+
+class User extends Eloquent implements UserInterface, RemindableInterface {
+
 
 	protected $table = "gebruikers";
 	protected $id = "id";
@@ -19,11 +24,47 @@ class User extends Eloquent {
 		'city'			=>		'required',
 		'adress'		=>		'required',
 		'zip'			=>		'required',
-		'email'			=>		'required',
-		'admin'			=>		'required'
+		'email'			=>		'required'
 			
 		);
 		return Validator::make($input, $rules);
+	}
+	public function getRememberTokenName()
+	{
+	    return 'remember_token';
+	}
+
+	public function getRememberToken()
+	{
+	    return $this->remember_token;
+	}
+
+	public function setRememberToken($value)
+	{
+	    $this->remember_token = $value;
+	}
+	/**
+	 * Get the password for the user.
+	 *
+	 * @return string
+	 */
+	public function getAuthPassword()
+	{
+		return $this->password;
+	}
+
+	public function getAuthIdentifier()
+	{
+		return $this->getKey();
+	}
+	/**
+	 * Get the e-mail address where password reminders are sent.
+	 *
+	 * @return string
+	 */
+	public function getReminderEmail()
+	{
+		return $this->email;
 	}
 }
 ?>

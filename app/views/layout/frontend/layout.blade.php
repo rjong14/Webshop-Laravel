@@ -9,9 +9,36 @@
     <link rel="shortcut icon" href="favicon.ico">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-1.8.3.min.js"><\/script>')</script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    {{ HTML::style('http://getbootstrap.com/2.3.2/assets/css/bootstrap.css'); }}
+        {{ HTML::script('http://getbootstrap.com/2.3.2/assets/js/bootstrap.js'); }}
+    {{ HTML::style('css/bootstrap-modal.css'); }}
     {{ HTML::style('css/style.css'); }}    
-   
     {{ HTML::script('js/main.js'); }}
+    {{ HTML::script('js/click.js'); }}
+
+    {{ HTML::script('js/bootstrap-modalmanager.js'); }}
+    {{ HTML::script('js/bootstrap-modal.js'); }}
+    
+    <script type="text/javascript">
+       $(document).ready(function() {
+         $('.login').on('click', function() {
+             var $modal = $('#ajax-modal');
+             $modal.load('{{ URL::to("login") }}', function(){
+             $modal.modal();  
+             $modal.removeClass("hide");
+            });
+         });
+         $('.signup').on('click', function() {
+             var $modal = $('#ajax-modal');
+             $modal.load('{{ URL::to("signup") }}', function(){
+             $modal.modal();  
+             $modal.removeClass("hide");
+            });
+         });
+        });
+    </script>
     
     
 <!--
@@ -30,6 +57,7 @@
 -->
 </head>
 <body>
+    <div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
     <div id="top">
         <div class="container_12">
             <div class="grid_9">
@@ -38,8 +66,8 @@
                     <ul>
                         <li class="current"><a href="index.php">Home</a></li>
                         <li><a href="shopping_cart.php">lol</a></li>
-                        <li><a href="login.php">Log In</a></li>
-                        <li><a href="signup.php">Sign Up</a></li>
+                        <li><a class="login"> Log In</a></li>
+                        <li><a class="signup">Sign Up</a></li>
                     </ul>
                 </nav>
             </div><!-- .grid_9 -->
@@ -58,8 +86,11 @@
             <div class="grid_9">
                 <div class="top_header">
                     <div class="welcome">
-
-                        
+                        @if(Auth::check())
+                            Welcome {{ Auth::User()->gebruikersnaam}}
+                        @else
+                            Welcome visitor you can <a class="login">login</a> or <a class="signup">create an account</a>
+                        @endif
                     </div><!-- .welcome -->
                     <ul id="cart_nav">
                         <li>
@@ -96,8 +127,28 @@
                 <nav class="primary">
                     <div class="bg-menu-select"></div>
                     <a class="menu-select" href="#">Catalog</a>
+                    <ul class="parents">
+                    @foreach ($menu_items as $item)
+                    @if(count($item->belongsToCategories) == 0)
 
-
+                        @if(count($item->hasManysubCategories) > 0)
+                        <li class="parent plus"> 
+                            <a href='{{ URL::to($item->link)}}'> {{ $item->label}} </a>
+                            <ul class="sub" style="display: none;">
+                                @foreach ($item->hasManysubCategories as $sub)
+                                    <li>
+                                   
+                                        <a href='{{ URL::to($sub->link) }}'> {{ $sub->label }} </a>
+                                    </li>
+                                @endforeach    
+                            </ul>
+                        </li>
+                        @else
+                         <li><a href='{{ URL::to($item->link) }}'> {{ $item->label}} </a></li>
+                        @endif
+                    @endif
+                    @endforeach
+                    </ul>
                 </nav><!-- .primary -->
             </div><!-- .grid_9 -->
             <p>
@@ -190,5 +241,3 @@
     </footer>
 </body>
 </html>
-
-    

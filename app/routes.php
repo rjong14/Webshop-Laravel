@@ -11,8 +11,12 @@
 |
 */
 
-Route::get('/', 'IndexController@getIndex');
-
+Route::get('home', 'IndexController@getIndex');
+Route::get('login', 'LoginController@getIndex');
+Route::get('about', 'AboutController@getIndex');
+Route::get('takenverdeling', 'TaskController@getIndex');
+Route::controller('login', 'LoginController');
+Route::controller('signup', 'SignupController');
 
 Route::group(array('prefix' => 'admin'), function()
 {
@@ -29,3 +33,9 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::controller('/orders', 'OrderController');
 	Route::controller('/menus', 'MenuController');
 });
+
+//Route::group(array('prefix' => 'producten'), function()
+//{
+	Route::controller('producten', 'FProductController');
+
+//});
