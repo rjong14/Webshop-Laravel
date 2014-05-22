@@ -17,6 +17,8 @@ Route::get('about', 'AboutController@getIndex');
 Route::get('takenverdeling', 'TaskController@getIndex');
 Route::controller('login', 'LoginController');
 Route::controller('signup', 'SignupController');
+Route::controller('search', 'SearchController');
+Route::controller('cart', 'CartController');
 
 Route::group(array('prefix' => 'admin'), function()
 {

@@ -27,5 +27,11 @@ class FProductController extends BaseController {
 		$menu_items = Menu::all();
 		return View::make('frontend/product/list')->with(array('menu_items' => $menu_items, 'products' => $products, 'name' => $name));	
 	}
+	public function getDetail($id)
+	{
+		$menu_items = Menu::all();
+		$product = Product::find($id);
+		return View::make('frontend/product/detail')->with(array('menu_items' => $menu_items, 'product' => $product));
+	}
 }
 ?>

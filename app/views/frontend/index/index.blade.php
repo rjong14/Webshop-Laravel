@@ -18,7 +18,7 @@
                     <form action="cart_update.php" method="POST">
                     <img class="sale" src="img/top.png" alt="Sale">
                     <div class="prev">
-                        <a href="product_page.php?productid={{ $comp->id }}"><img src='{{ $comp->prImage }}' alt="product" title=""></a>
+                        <a href="{{ URL::to('producten/detail/' . $comp->id)}}"><img src='{{ $comp->prImage }}' alt="product" title=""></a>
                     </div><!-- .prev -->
 
                     <h3 class="title">{{ $comp->prNaam }}</h3>
@@ -49,7 +49,7 @@
                     <form action="cart_update.php" method="POST">
                     <img class="sale" src="img/top.png" alt="Sale">
                     <div class="prev">
-                        <a href="product_page.php?productid={{ $x->id }}"><img src='{{ $x->prImage }}' alt="product" title=""></a>
+                        <a href="{{ URL::to('producten/detail/' . $x->id)}}"><img src='{{ $x->prImage }}' alt="product" title=""></a>
                     </div><!-- .prev -->
 
                     <h3 class="title">{{ $x->prNaam }}</h3>
@@ -80,7 +80,7 @@
                     <form action="cart_update.php" method="POST">
                     <img class="sale" src="img/top.png" alt="Sale">
                     <div class="prev">
-                        <a href="product_page.php?productid={{ $play->id }}"><img src='{{ $play->prImage }}' alt="product" title=""></a>
+                        <a href="{{ URL::to('producten/detail/' . $play->id)}}"><img src='{{ $play->prImage }}' alt="product" title=""></a>
                     </div><!-- .prev -->
 
                     <h3 class="title">{{ $play->prNaam }}</h3>

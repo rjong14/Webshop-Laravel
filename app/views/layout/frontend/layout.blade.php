@@ -1,7 +1,10 @@
+<?php require_once(__DIR__ . '/../../views/frontend/ShoppingCart.php'); 
+$cart = new ShoppingCart();
+?>
+
 <html>
 <head>
     <meta charset="utf-8">
-
     <title>Home</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
@@ -22,20 +25,20 @@
     
     <script type="text/javascript">
        $(document).ready(function() {
-         $('.login').on('click', function() {
-             var $modal = $('#ajax-modal');
-             $modal.load('{{ URL::to("login") }}', function(){
-             $modal.modal();  
-             $modal.removeClass("hide");
-            });
-         });
-         $('.signup').on('click', function() {
-             var $modal = $('#ajax-modal');
-             $modal.load('{{ URL::to("signup") }}', function(){
-             $modal.modal();  
-             $modal.removeClass("hide");
-            });
-         });
+             $('.login').on('click', function() {
+                 var $modal = $('#ajax-modal');
+                 $modal.load('{{ URL::to("login") }}', function(){
+                 $modal.modal();  
+                 $modal.removeClass("hide");
+                });
+             });
+             $('.signup').on('click', function() {
+                 var $modal = $('#ajax-modal');
+                 $modal.load('{{ URL::to("signup") }}', function(){
+                 $modal.modal();  
+                 $modal.removeClass("hide");
+                });
+             });
         });
     </script>
     
@@ -64,7 +67,7 @@
                     <a class="menu-open" href="#">Menu</a>
                     <ul>
                         <li class="current"><a href="index.php">Home</a></li>
-                        <li><a href="shopping_cart.php">lol</a></li>
+                        <li><a href="{{ URL::to('cart/index')}}">Shopping cart</a></li>
                         <li><a class="login"> Log In</a></li>
                         <li><a class="signup">Sign Up</a></li>
                     </ul>
@@ -93,32 +96,27 @@
                     </div><!-- .welcome -->
                     <ul id="cart_nav">
                         <li>
-                            <a class="cart_li" href="shopping_cart.php">
+                            <a class="cart_li" href="{{ URL::to('cart/index') }}">
                                 <div class="cart_ico"></div>
-                                <span>€</span>
+                                <span>&euro; {{ $cart->getTotalPrice() }}</span>
                             </a>
                             <ul class="cart_cont">
-                                
-
-
+                                    <li class="no_border recently">Recently added item(s)</li>
                                     <li class="no_border recently">Your shopping cart is empty</li>
                                     <br>
                                     <br>
-
-
-
-                                <li class="no_border">
+                            <li class="no_border">
                                     <a href="shopping_cart.php" class="view_cart">View shopping cart</a>
                                     <a href="checkout.php" class="checkout">Procced to Checkout</a>
-                                </li>
+                            </li>
                             </ul>
                         </li>
                     </ul><!-- .cart_nav -->
-
-                    <form class="search" action="search.php">
-                        <input type="submit" class="search_button" value=""></a>
-                        <input type="text" name="search" class="search_form" value="" placeholder="Search entire store here...">
+                    <form class="search" method="post" action="{{ URL::to('search/index/')}}">
+                        <input type="submit" id="search" class="search_button" value="">
+                        <input type="text" id="search_input" name="search_input" class="search_form" placeholder="Search entire store here...">
                     </form><!-- .search -->
+
                 </div><!-- .top_header -->
             </div><!-- .grid_9 -->
             

@@ -13,53 +13,48 @@ $(document).ready(function() {
                 
             });
         });
-
-
-
 });
 </script>
-
 {{ HTML::style('css/style.css'); }}   
 
 @section('content')
     <section id="main">
         <div class="container_12">
             <div id="content" class="grid_9">
-                <h1 class="page_title">Product List {{ $name}} : </h1>
+                <h1 class="page_title">Search results :</h1>
                  
                 <div class="options"></div><!-- .options -->
                 <div class="clear"></div>
                 <div class="products_list catalog">           
-
-                    @foreach ($products as $product)
-    			  		<article>
-    						<form method="post" class="frm" action="{{ URL::to('cart/add') }}">
-    							<div class="grid_3">
-    	  							<div class="prev">
-    									<a href="{{ URL::to('producten/detail/' . $product->id)}}"><img src="{{ $product->prImage }}" alt="Product 2" title=""></a>
-    	   							</div><!-- .prev -->
-    							</div><!-- .grid_3 -->
-    							<div class="grid_6">
-    	 			 				<div class="entry_content">
-    									<h3 class="title">{{$product->prNaam}}</h3>
-           				 				<p> {{$product->prKbeschrijving }}</p>
-              						</div><!-- .entry_content -->
-               	 					<div class="price">
-                					   {{$product->prPrijs}}
-    	    						</div>
-    	    						Quantity <input type="text" name="product_qty" value=1 style="width: 40px"/>
-    	    						<div class="cart">
-    	   								<button data-qty="" data-id="{{$product->id}}" class="add_to_cart add">Add To Cart</button>
-    								</div><!-- .cart -->
-        							<input type="hidden" name="product_id" value="{{ $product->id}}"/>
+                  @foreach ($products as $product)
+                        <article>
+                            <form method="post" class="frm" action="{{ URL::to('cart/add') }}">
+                                <div class="grid_3">
+                                    <div class="prev">
+                                        <a href="{{ URL::to('producten/detail/' . $product->id)}}"><img src="{{ $product->prImage }}" alt="Product 2" title=""></a>
+                                    </div><!-- .prev -->
+                                </div><!-- .grid_3 -->
+                                <div class="grid_6">
+                                    <div class="entry_content">
+                                        <h3 class="title">{{$product->prNaam}}</h3>
+                                        <p> {{$product->prKbeschrijving }}</p>
+                                    </div><!-- .entry_content -->
+                                    <div class="price">
+                                       {{$product->prPrijs}}
+                                    </div>
+                                    Quantity <input type="text" name="product_qty" value=1 style="width: 40px"/>
+                                    <div class="cart">
+                                        <button data-qty="" data-id="{{$product->id}}" class="add_to_cart add">Add To Cart</button>
+                                    </div><!-- .cart -->
+                                    <input type="hidden" name="product_id" value="{{ $product->id}}"/>
                                     <input type="hidden" name="product_name" value="{{ $product->prNaam}}"/>
                                     <input type="hidden" name="product_image" value="{{ $product->prImage}}"/>
                                     <input type="hidden" name="product_price" value="{{ $product->prPrijs}}"/>
                                     <input type="hidden" name="product_cat" value="{{$product->prCategorie}}"/>
-    							</div><!-- .grid_6 -->
-    							<div class="clear"></div>
-    						</form>
-        				</article>
+                                </div><!-- .grid_6 -->
+                                <div class="clear"></div>
+                            </form>
+                        </article>
                      @endforeach
           			<div class="clear"></div>
                 </div><!-- .products_list -->
