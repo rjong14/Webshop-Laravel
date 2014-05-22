@@ -19,6 +19,7 @@ Route::controller('login', 'LoginController');
 Route::controller('signup', 'SignupController');
 Route::controller('search', 'SearchController');
 Route::controller('cart', 'CartController');
+Route::controller('checkout', 'CheckoutController');
 
 Route::group(array('prefix' => 'admin'), function()
 {

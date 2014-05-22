@@ -66,10 +66,11 @@ $cart = new ShoppingCart();
                 <nav>
                     <a class="menu-open" href="#">Menu</a>
                     <ul>
-                        <li class="current"><a href="index.php">Home</a></li>
+                        <li><a href="{{ URL::to('home')}}">Home</a></li>
                         <li><a href="{{ URL::to('cart/index')}}">Shopping cart</a></li>
                         <li><a class="login"> Log In</a></li>
                         <li><a class="signup">Sign Up</a></li>
+                        <li><a href="{{ URL::to('checkout/index')}}">Check out</a></li>
                     </ul>
                 </nav>
             </div><!-- .grid_9 -->

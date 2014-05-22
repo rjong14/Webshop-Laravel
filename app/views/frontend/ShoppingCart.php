@@ -30,6 +30,11 @@ class ShoppingCart {
 		}
 		return $total;
 	}
+	public function setEmpty()
+	{
+		$empty = json_encode(array());
+		$_SESSION['cart_items'] = $empty;	
+	}
 	public function put(Item $item)
 	{
 
