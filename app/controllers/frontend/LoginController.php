@@ -23,5 +23,11 @@ class LoginController extends BaseController {
 			return Response::json($response);
 		
 	}
+	public function postLogout()
+	{
+		Auth::logout();
+		$response['code'] = 1;
+		return Response::json($response);
+	}
 }
 ?>

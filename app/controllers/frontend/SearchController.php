@@ -5,10 +5,10 @@ class SearchController extends BaseController {
 	{
 		$menu_items = Menu::all();
 		$input = Input::all();
-		$search_input = $input['search_input'];
-		$products = Product::where('prNaam', 'like', '%' . $search_input . '%')->get();
+		$search = $input['search_input'];
+		$products = Product::where('prNaam', 'like', '%' . $search . '%')->get();
 
-		return View::make('frontend/search/index')->with(array('menu_items' => $menu_items, 'products' => $products));
+		return View::make('frontend/search/index')->with(array('menu_items' => $menu_items, 'products' => $products, 'search'=>$search));
 	}
 }
 ?>

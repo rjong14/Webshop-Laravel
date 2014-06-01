@@ -5,17 +5,15 @@ $(document).ready(function() {
 
         $('.frm').submit(function(e)
         {   
-            var frm = $(this);
             e.preventDefault();
-
-            $.post(frm.attr('action'), frm.serialize(), function(response) 
+            var frm = $(this);
+            var serialize = frm.serialize();
+            console.log(serialize);
+            $.post(frm.attr('action'), serialize, function(response) 
             {
                 
             });
         });
-
-
-
 });
 </script>
 

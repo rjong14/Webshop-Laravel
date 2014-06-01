@@ -45,7 +45,7 @@ $(document).ready(function() {
 							<div class="list_header"><div class="number"></div>Checkout</div>
 							<div class="list_body">
 								<form id="frm" action="{{ URL::to('checkout/order') }}" method="post">
-								   <h3>Checkout as a {{ Auth::User()->voornaam }}</h3>
+								   <h3>Checkout as {{ Auth::User()->voornaam }}</h3>
 								   <p> products : {{ $shoppingcart->count()}}</p>
                                    <p>Total price : &euro; {{ $shoppingcart->getTotalPrice()}}</p>
 					               <ul id="cart_nav" class="clearleft">

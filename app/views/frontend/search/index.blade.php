@@ -21,7 +21,7 @@ $(document).ready(function() {
     <section id="main">
         <div class="container_12">
             <div id="content" class="grid_9">
-                <h1 class="page_title">Search results :</h1>
+                <h1 class="page_title">Search results for "{{$search}}":</h1>
                  
                 <div class="options"></div><!-- .options -->
                 <div class="clear"></div>

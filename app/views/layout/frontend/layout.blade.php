@@ -32,6 +32,16 @@ $cart = new ShoppingCart();
                  $modal.removeClass("hide");
                 });
              });
+            $('.logout').on('click', function() {
+                $.post("{{ URL::to('login/logout')}}", function(response){
+                    if(response.code == 1)
+                    {
+                        alert("uitloggen")
+                    } else {
+                        alert("Fout tijdens uitloggen");
+                    }
+                });
+            });
              $('.signup').on('click', function() {
                  var $modal = $('#ajax-modal');
                  $modal.load('{{ URL::to("signup") }}', function(){
@@ -41,22 +51,7 @@ $cart = new ShoppingCart();
              });
         });
     </script>
-    
-    
-<!--
-    <script src="js/html5.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/radio.js"></script>
-    <script src="js/checkbox.js"></script>
-    <script src="js/selectBox.js"></script>
-    <script src="js/jquery.carouFredSel-6.2.0-packed.js"></script>
-    <script src="js/jquery.touchSwipe.min.js"></script>
-    <script src="js/jquery.jqzoom-core.js"></script>
-    <script src="js/jquery.transit.js"></script>
-    <script src="js/jquery.easing.1.2.js"></script>
-    <script src="js/jquery.anythingslider.js"></script>
-    <script src="js/jquery.anythingslider.fx.js"></script>
--->
+
 </head>
 <body>
     <div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
@@ -68,8 +63,12 @@ $cart = new ShoppingCart();
                     <ul>
                         <li><a href="{{ URL::to('home')}}">Home</a></li>
                         <li><a href="{{ URL::to('cart/index')}}">Shopping cart</a></li>
+                        @if(!Auth::check())
                         <li><a class="login"> Log In</a></li>
                         <li><a class="signup">Sign Up</a></li>
+                        @else
+                        <li><a class="logout">Logout</a></li>
+                        @endif
                         <li><a href="{{ URL::to('checkout/index')}}">Check out</a></li>
                     </ul>
                 </nav>
