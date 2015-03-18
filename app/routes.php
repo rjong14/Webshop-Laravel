@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/', array(function () {
+    return Redirect::action('IndexController@getIndex');
+}));
+
 Route::get('home', 'IndexController@getIndex');
 Route::get('login', 'LoginController@getIndex');
 Route::get('about', 'AboutController@getIndex');

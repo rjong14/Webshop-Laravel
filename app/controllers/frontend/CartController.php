@@ -1,4 +1,3 @@
-
 <?php
 require_once(__DIR__ . '/../../views/frontend/ShoppingCart.php');
 require_once(__DIR__ . '/../../views/frontend/Item.php');
