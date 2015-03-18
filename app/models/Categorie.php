@@ -3,7 +3,7 @@ class Categorie extends Eloquent {
 
 	protected $table = "Categorie";
 	protected $id = "id";
-	protected $fillable = array('naam');
+	protected $fillable = array('name');
 	public $timestamps = false;
 
 	public function products()
